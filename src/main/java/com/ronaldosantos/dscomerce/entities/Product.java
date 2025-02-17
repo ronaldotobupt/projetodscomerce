@@ -11,6 +11,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -34,6 +35,8 @@ public class Product {
 						inverseJoinColumns = @JoinColumn(name = "category_id")) // Criando uma tabela de junção
 	private Set<Category> categories = new HashSet<>(); //Instanciando uma lista do tipo Set, no relacionamento muitos para muitos não pode haver repetição de ID na lista
 	
+	@OneToMany(mappedBy = "id.product")
+	private Set<OrderItem> items = new HashSet<>();
 	
 	public Product() {
 		
