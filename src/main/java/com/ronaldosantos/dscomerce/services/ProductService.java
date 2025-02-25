@@ -31,8 +31,8 @@ public class ProductService {
 	
 	//Buscando todos os registros do banco - paginado
 	@Transactional(readOnly = true)
-	public Page<ProductDTO> findAll(Pageable pagealbe ) {
-		Page<Product> result = repository.findAll(pagealbe);
+	public Page<ProductDTO> findAll(String name, Pageable pagealbe ) {
+		Page<Product> result = repository.searchByName(name, pagealbe);
 		return result.map(x -> new ProductDTO(x));
 	}
 	
